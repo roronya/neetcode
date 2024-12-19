@@ -16,6 +16,10 @@ class Solution {
         return onepassIsValidSudoku(board);
     }
 
+    /**
+     * myIsValidSudokuよりも抽象的に考えないとonepassにできなかった
+     * 必ず9*9のマスすべてを走査するので、適切なキーでそれぞれの集合の状態を一度に管理すればonepassにできる
+     */
     public boolean onepassIsValidSudoku(char[][] board) {
         Map<Integer, Set<Character>> rows = new HashMap<>();
         Map<Integer, Set<Character>> cols = new HashMap<>();
