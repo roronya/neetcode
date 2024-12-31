@@ -1,36 +1,37 @@
 package neetcode.stack.minimum_stack;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 class MinStack {
-    List<Integer> list = new ArrayList<>();
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
 
     public MinStack() {
-
+        stack = new Stack<>();
+        minStack = new Stack<>();
     }
 
     public void push(int val) {
-        list.add(0, val);
+        stack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
     }
 
     public void pop() {
-        if (list.isEmpty()) return;
-        list.remove(0);
+        if (stack.isEmpty()) return;
+        int top = stack.pop();
+        if (top == minStack.peek()) {
+            minStack.pop();
+        }
     }
 
     public int top() {
-        if (list.isEmpty()) return 0;
-        return list.get(0);
+        return stack.peek();
     }
 
     public int getMin() {
-        if (list.isEmpty()) return 0;
-        var min = list.get(0);
-        for (Integer n : list) {
-            min = Math.min(n, min);
-        }
-        return min;
+        return minStack.peek();
     }
 }
 
