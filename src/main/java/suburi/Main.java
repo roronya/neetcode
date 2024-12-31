@@ -1,9 +1,7 @@
 package suburi;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.BinaryOperator;
 
 public class Main {
 
@@ -34,7 +32,7 @@ public class Main {
         // 独自の比較関数で降順にする例
         // 戻り値が0以上の場合: 第一引数→第二引数の順
         // 戻り値が未満の場合: 第二引数→第一引数の順
-        Integer[] a = {3, 4, 5, 1, 2, 6, 7, 8, 9, 0};
+        Integer[] a = new Integer[]{3, 4, 5, 1, 2, 6, 7, 8, 9, 0};
         Comparator<Integer> c = new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -56,6 +54,31 @@ public class Main {
         List<Integer> list1 = new ArrayList<>();
         List<Integer> list2 = Arrays.asList(1, 2, 3, 4, 5);
 
+        // 関数インターフェース
+        /// 2引数の関数はBinaryOperatorを使う
+        Map<String, BinaryOperator<Integer>> operatorMap = new HashMap<>();
+        operatorMap.put("+", (s, t) -> s + t);
+        operatorMap.put("-", (s, t) -> s - t);
+        operatorMap.put("*", (s, t) -> s * t);
+        operatorMap.put("/", (s, t) -> s / t);
+        BinaryOperator<Integer> f = operatorMap.get("+");
+        System.out.println(f.apply(1, 10)); // => 11
+
+        // 自分で@FunctionalInterfaceを作ることもできる
+        Operator myFunction = (s, t) -> s + t + s;
+        System.out.println(myFunction.apply(1, 2)); // => 4
+
+        // String → Integerの変換
+        Integer.parseInt("1"); // => intの1
+        Integer.valueOf("1"); // => Integerの1
+
+        // Integer -> Stringの変換
+        String.valueOf(1); // => "1"
+    }
+
+    @FunctionalInterface
+    interface Operator {
+        int apply(int a, int b);
     }
 
 }
