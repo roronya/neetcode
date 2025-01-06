@@ -28,6 +28,8 @@ public class Main {
         array = new int[]{3, 4, 5, 1, 2, 6, 7, 8, 9, 0};
         Arrays.sort(array); // 破壊的メソッドなので注意
         System.out.println(Arrays.toString(array));
+        // デフォルトは昇順
+        // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
         // 独自の比較関数で降順にする例
         // 戻り値が0以上の場合: 第一引数→第二引数の順
