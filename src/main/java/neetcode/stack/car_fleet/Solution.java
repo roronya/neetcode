@@ -1,4 +1,4 @@
-package neetcode.stack.car_freet;
+package neetcode.stack.car_fleet;
 
 import java.util.Arrays;
 
