@@ -4,8 +4,33 @@ import java.util.*;
 
 public class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        return topKFrequentBucketSort(nums, k);
+        return topKFrequent2(nums, k);
     }
+
+    public int[] topKFrequent2(int[] nums, int k) {
+        HashMap<Integer, Integer> count = new HashMap<>();
+        for (int num : nums) count.put(num, count.getOrDefault(num, 0) + 1);
+
+        List<List<Integer>> freq = new ArrayList<>();
+        for (int i = 0; i <= nums.length; i++) {
+            freq.add(new ArrayList<>());
+        }
+
+        for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+            freq.get(entry.getValue()).add(entry.getKey());
+        }
+
+        int[] ans = new int[k];
+        int a = 0;
+        for (int i = freq.size() - 1; i >= 0; i--) {
+            for (int f : freq.get(i)) {
+                ans[a++] = f;
+                if (a == k) return ans;
+            }
+        }
+        return ans;
+    }
+
 
     // time complexity: O(n log n)
     // space complexity: O(n)
@@ -60,18 +85,17 @@ public class Solution {
     public int[] topKFrequentBucketSort(int[] nums, int k) {
         // in: [1,2,2,2,3,3]
         Map<Integer, Integer> count = new HashMap<>();
+        // to: count = {1:1, 2:3, 3:2}
+        for (int n : nums) {
+            count.put(n, count.getOrDefault(n, 0) + 1);
+        }
+
         List<Integer>[] freq = new List[nums.length + 1]; // interface型で配列作っただけだから、ジェネリクスのアンチパターンではない
 
         // to: freq = [[], [], [], ...]
         for (int i = 0; i < freq.length; i++) {
             freq[i] = new ArrayList<>();
         }
-
-        // to: count = {1:1, 2:3, 3:2}
-        for (int n : nums) {
-            count.put(n, count.getOrDefault(n, 0) + 1);
-        }
-
         // to: freq = [[], [1], [3], [2], ...]
         // 各要素はそのindexに該当する番号の数だけ現れた数字が配列に格納されている。
         // この場合1回現れたのは1、 2回現れたのは3, 3回現れたのは2という具合
