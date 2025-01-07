@@ -1,6 +1,18 @@
 package neetcode.arrays_and_hashing.valid_anagrams;
 
 public class Solution {
+    public boolean isAnagram2(String s, String t) {
+        if (s.length() != t.length()) return false;
+        int[] a = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            a[s.charAt(i) - 'a']++;
+            a[t.charAt(i) - 'a']--;
+        }
+        for (int ai : a) {
+            if (ai != 0) return false;
+        }
+        return true;
+    }
 
     public boolean myIsAnagram(String s, String t) {
         if (s.length() != t.length()) return false;

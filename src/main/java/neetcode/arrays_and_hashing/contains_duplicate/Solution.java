@@ -1,5 +1,7 @@
 package neetcode.arrays_and_hashing.contains_duplicate;
 
+import java.util.HashSet;
+
 public class Solution {
 
     public boolean hasDuplicate(int[] nums) {
@@ -12,6 +14,15 @@ public class Solution {
                     return true;
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean hasDuplicate2(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int n : nums) {
+            if (set.contains(n)) return true;
+            set.add(n);
         }
         return false;
     }
