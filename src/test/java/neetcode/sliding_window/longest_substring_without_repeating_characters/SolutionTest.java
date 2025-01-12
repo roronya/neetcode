@@ -39,4 +39,11 @@ class SolutionTest {
         int actual = solution.lengthOfLongestSubstring("dvdf");
         assertEquals(3, actual);
     }
+
+    @Test
+    void example6() {
+        Solution solution = new Solution();
+        int actual = solution.lengthOfLongestSubstring("cdd");
+        assertEquals(2, actual);
+    }
 }
