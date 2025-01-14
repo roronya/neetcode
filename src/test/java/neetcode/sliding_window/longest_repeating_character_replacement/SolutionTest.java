@@ -33,8 +33,14 @@ class SolutionTest {
     void example4() {
         Solution solution = new Solution();
         int actual = solution.characterReplacement("ABBB", 2);
-        // AA*ABBA => AAB*BBA" => AABA*BA => AABABB*
         assertEquals(4, actual);
+    }
+
+    @Test
+    void example5() {
+        Solution solution = new Solution();
+        int actual = solution.characterReplacement("BAAAB", 2);
+        assertEquals(5, actual);
     }
 
 

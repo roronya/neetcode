@@ -76,6 +76,11 @@ public class Main {
 
         // Integer -> Stringの変換
         String.valueOf(1); // => "1"
+
+        // 文字列のリバース
+        String original = "hello";
+        String reversed = new StringBuilder(original).reverse().toString();
+        System.out.println(reversed); // 出力: "olleh"
     }
 
     @FunctionalInterface
