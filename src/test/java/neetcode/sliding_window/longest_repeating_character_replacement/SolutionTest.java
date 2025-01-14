@@ -18,4 +18,12 @@ class SolutionTest {
         int actual = solution.characterReplacement("AAABABB", 1);
         assertEquals(5, actual);
     }
+
+    @Test
+    void example3() {
+        Solution solution = new Solution();
+        int actual = solution.characterReplacement("AABABBA", 1);
+        assertEquals(4, actual);
+    }
+
 }
