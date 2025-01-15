@@ -19,4 +19,13 @@ class SolutionTest {
         boolean actual = solution.checkInclusion("abc", "lecaabee");
         assertFalse(actual);
     }
+
+    @Test
+    void example3() {
+        Solution solution = new Solution();
+        boolean actual = solution.checkInclusion("ccc", "cbac");
+        assertFalse(actual);
+    }
+
+
 }
