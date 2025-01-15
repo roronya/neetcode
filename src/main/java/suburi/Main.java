@@ -81,6 +81,13 @@ public class Main {
         String original = "hello";
         String reversed = new StringBuilder(original).reverse().toString();
         System.out.println(reversed); // 出力: "olleh"
+
+        // 同一性 forループ回すしか無い
+        int[] a1 = new int[2];
+        int[] a2 = new int[2];
+        System.out.println(a1 == a2); // false
+        a1[0] = 100;
+        System.out.println(a1 == a2); // false
     }
 
     @FunctionalInterface

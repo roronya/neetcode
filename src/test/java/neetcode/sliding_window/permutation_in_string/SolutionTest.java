@@ -27,5 +27,17 @@ class SolutionTest {
         assertFalse(actual);
     }
 
+    @Test
+    void example4() {
+        Solution solution = new Solution();
+        boolean actual = solution.checkInclusion("adc", "dcda");
+        assertTrue(actual);
+    }
 
+    @Test
+    void example5() {
+        Solution solution = new Solution();
+        boolean actual = solution.checkInclusion("abc", "lecaabee");
+        assertFalse(actual);
+    }
 }
