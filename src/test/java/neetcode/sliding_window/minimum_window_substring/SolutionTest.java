@@ -24,4 +24,18 @@ class SolutionTest {
         String actual = solution.minWindow("x", "xy");
         Assertions.assertEquals("", actual);
     }
+
+    @Test
+    void example4() {
+        Solution solution = new Solution();
+        String actual = solution.minWindow("a", "b");
+        Assertions.assertEquals("", actual);
+    }
+
+    @Test
+    void example5() {
+        Solution solution = new Solution();
+        String actual = solution.minWindow("aa", "aa");
+        Assertions.assertEquals("aa", actual);
+    }
 }

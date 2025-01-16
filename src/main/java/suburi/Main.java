@@ -88,6 +88,9 @@ public class Main {
         System.out.println(a1 == a2); // false
         a1[0] = 100;
         System.out.println(a1 == a2); // false
+
+        // 文字列のスライス
+        System.out.println("Hello, World".substring(0, 5)); // Hello
     }
 
     @FunctionalInterface
