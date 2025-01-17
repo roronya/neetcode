@@ -1,12 +1,13 @@
 package neetcode.sliding_window.minimum_window_substring;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 
 class Solution {
     public String minWindow(String s, String t) {
-        return stack(s, t);
+        return slidingWindow(s, t);
     }
 
     // l,rの全部の組み合わせを列挙して、部分文字列を作りtを含むか確認する
@@ -93,6 +94,40 @@ class Solution {
             System.out.println(Arrays.toString(sCount));
         }
         return found ? ans : "";
+    }
+
+    /**
+     * rを全走査する
+     * それぞれのrに対してlを必要なところまで縮める
+     */
+    String slidingWindow(String s, String t) {
+        HashMap<Character, Integer> tCount = new HashMap<>();
+        for (char ch : t.toCharArray()) tCount.put(ch, tCount.getOrDefault(ch, 0) + 1);
+
+        HashMap<Character, Integer> window = new HashMap<>();
+        int have = 0, need = tCount.size(), l = 0, ansL = 0, ansR = 0, ansLen = Integer.MAX_VALUE;
+        for (int r = 0; r < s.length(); r++) {
+            char ch = s.charAt(r);
+            window.put(ch, window.getOrDefault(ch, 0) + 1);
+
+            if (tCount.containsKey(ch) && tCount.get(ch).equals(window.get(ch))) have++;
+
+            while (have == need) {
+                // ansを更新
+                if (r - l + 1 < ansLen) {
+                    ansL = l;
+                    ansR = r;
+                    ansLen = Math.min(ansLen, r - l + 1);
+                }
+
+                // lに位置する文字をwindowから消す
+                ch = s.charAt(l);
+                window.put(ch, window.get(ch) - 1);
+                if (tCount.containsKey(ch) && tCount.get(ch) > window.get(ch)) have--;
+                l++;
+            }
+        }
+        return ansLen == Integer.MAX_VALUE ? "" : s.substring(ansL, ansR + 1);
     }
 
 }
