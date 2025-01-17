@@ -2,6 +2,7 @@ package suburi;
 
 import java.util.*;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -91,6 +92,20 @@ public class Main {
 
         // 文字列のスライス
         System.out.println("Hello, World".substring(0, 5)); // Hello
+
+        // int[] → List<Integer>
+        int[] intArray = {1, 2, 3, 4, 5};
+        List<Integer> integerList = Arrays.stream(intArray)
+                .boxed()
+                .collect(Collectors.toList());
+        System.out.println(integerList); // 出力: [1, 2, 3, 4, 5]
+
+        // List<Integer> → int[]
+        integerList = Arrays.asList(1, 2, 3, 4, 5);
+        intArray = integerList.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+        System.out.println(Arrays.toString(intArray)); // 出力: [1, 2, 3, 4, 5]
     }
 
     @FunctionalInterface
