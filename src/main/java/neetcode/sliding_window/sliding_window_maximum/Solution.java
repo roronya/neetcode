@@ -1,13 +1,10 @@
 package neetcode.sliding_window.sliding_window_maximum;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        return slidingWindow(nums, k);
+        return dequeue(nums, k);
     }
 
     // brute force
@@ -42,5 +39,37 @@ class Solution {
         }
         System.out.println(ans);
         return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    // dequeue
+    // monotonic decreasing dequeueを作る。各windowで常に左から取ればmaxが取れるようにする。
+    int[] dequeue(int[] nums, int k) {
+        int n = nums.length;
+        int[] output = new int[n - k + 1];
+        Deque<Integer> q = new LinkedList<>();
+        int l = 0, r = 0;
+
+        while (r < n) {
+            // rより小さい値は後ろから消しておく
+            while (!q.isEmpty() && nums[q.getLast()] < nums[r]) {
+                q.removeLast();
+            }
+            q.addLast(r);
+
+            // windowがスライドしたときに範囲外になったら最大値を消す(いちばん頭のこと)
+            if (l > q.getFirst()) {
+                q.removeFirst();
+            }
+
+            // rがkより大きくなるまで単に上の処理を繰り返す
+            // kより大きくなったらスライドを開始する
+            // outputのindexはlに等しい
+            if ((r + 1) >= k) {
+                output[l] = nums[q.getFirst()];
+                l++;
+            }
+            r++;
+        }
+        return output;
     }
 }
