@@ -1,10 +1,12 @@
 package neetcode.sliding_window.minimum_window_substring;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Stack;
 
 class Solution {
     public String minWindow(String s, String t) {
-        return bruteForce(s, t);
+        return stack(s, t);
     }
 
     // l,rの全部の組み合わせを列挙して、部分文字列を作りtを含むか確認する
@@ -44,44 +46,53 @@ class Solution {
         return match ? s.substring(minL, minR + 1) : "";
     }
 
-    // tを含むsの部分文字列を探す
-    // まずrで舐めてtを含むr候補を見つけておく
-    String mySolution(String s, String t) {
+    // l,rをちょっとずつ狭めていく作戦
+    String stack(String s, String t) {
         if (s.length() < t.length()) return "";
 
-        int[] sCount = new int[128];
         int[] tCount = new int[128];
-        for (int i = 0; i < t.length(); i++) {
-            sCount[s.charAt(i)]++;
-            tCount[t.charAt(i)]++;
+        for (int i = 0; i < t.length(); i++) tCount[t.charAt(i)]++;
+        System.out.println(Arrays.toString(tCount));
+
+        // s[l,r]がtを含んでいるか確認
+        // 含んでいなければcontinue
+        // 含んでいればans = min(s[l:r], ans)してr--とl++をstackに積む
+        Stack<int[]> stack = new Stack<>();
+        stack.add(new int[]{0, s.length() - 1});
+        String ans = s;
+        boolean found = false;
+        HashSet<String> memo = new HashSet<>();
+        while (!stack.isEmpty()) {
+            System.out.println(stack.stream().map(Arrays::toString).toList());
+            int[] lr = stack.pop();
+            int l = lr[0], r = lr[1];
+            String substring = s.substring(l, r + 1);
+            if (memo.contains(substring)) continue;
+            memo.add(substring);
+
+            int[] sCount = new int[128];
+            for (int i = 0; i < substring.length(); i++) sCount[substring.charAt(i)]++;
+
+            boolean ok = true;
+            for (int i = 0; i < 128; i++) {
+                if (sCount[i] < tCount[i]) {
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                found = true;
+                if (r - l + 1 <= ans.length()) ans = substring;
+                stack.push(new int[]{l + 1, r});
+                stack.push(new int[]{l, r - 1});
+            }
+            System.out.println("-----------");
+            System.out.println("substring = " + substring);
+            System.out.println("ok = " + ok);
+            System.out.println("ans = " + ans);
+            System.out.println(Arrays.toString(sCount));
         }
-        System.out.println("tCount\n" + Arrays.toString(tCount));
-
-        // sのスライスの範囲を決めるポインタ
-        int l = 0, r = t.length() - 1;
-
-        // s[0:r]がtを含むまでrを増やす
-        int matches = 0;
-        while (matches < t.length()) {
-            System.out.println("matches: " + matches);
-            System.out.println("sCount\n" + Arrays.toString(sCount));
-
-            sCount[s.charAt(r)]++;
-            if (tCount[s.charAt(r)] > 0 && sCount[s.charAt(r)] >= tCount[s.charAt(r)]) matches++;
-            r++;
-            if (r >= s.length()) return ""; // 最後まで見てもtを含まない場合
-        }
-        System.out.println("l:r = " + l + ":" + r);
-        System.out.println("rmax sCount\n" + Arrays.toString(sCount));
-
-        // s[l:r]がtを含む文字列でいる限りlを増やす
-        while (tCount[s.charAt(l)] < 1) {
-            l++;
-        }
-        if (l > 0) l--; // ループ抜けたときtを含まなくなってるので1戻す
-
-        //s[l:r]を返す
-        return s.substring(l, r + 1);
+        return found ? ans : "";
     }
 
 }

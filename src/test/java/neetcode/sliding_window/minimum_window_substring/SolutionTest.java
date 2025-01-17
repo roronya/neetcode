@@ -38,4 +38,11 @@ class SolutionTest {
         String actual = solution.minWindow("aa", "aa");
         Assertions.assertEquals("aa", actual);
     }
+
+    @Test
+    void example6() {
+        Solution solution = new Solution();
+        String actual = solution.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd");
+        Assertions.assertEquals("abbbbbcdd", actual);
+    }
 }
