@@ -1,6 +1,7 @@
 package neetcode.linked_list.reverse_linked_list;
 
 import neetcode.linked_list.ListNode;
+import neetcode.linked_list.Utils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ class SolutionTest {
         ListNode head = ListNode.of(0, 1, 2, 3);
         ListNode actual = solution.reverseList(head);
         ListNode expected = ListNode.of(3, 2, 1, 0);
-        Assertions.assertTrue(actual.deepEquals(expected));
+        Assertions.assertTrue(Utils.deepEquals(actual, expected));
     }
 
     @Test
@@ -20,6 +21,6 @@ class SolutionTest {
         ListNode head = ListNode.of();
         ListNode actual = solution.reverseList(head);
         ListNode expected = ListNode.of();
-        Assertions.assertTrue(actual.deepEquals(expected));
+        Assertions.assertTrue(Utils.deepEquals(actual, expected));
     }
 }

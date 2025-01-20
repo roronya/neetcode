@@ -31,23 +31,12 @@ public class ListNode {
     }
 
     public static ListNode of(int... array) {
-        if (array.length < 1) return new ListNode();
-        ListNode head = new ListNode(array[0]);
-        ListNode current = head;
-        for (int i = 1; i < array.length; i++) {
+        ListNode dummyHead = new ListNode();
+        ListNode current = dummyHead;
+        for (int i = 0; i < array.length; i++) {
             current.next = new ListNode(array[i]);
             current = current.next;
         }
-        return head;
-    }
-
-    public boolean deepEquals(ListNode b) {
-        ListNode a = this;
-        while (a != null && b != null) {
-            if (a.val != b.val) return false;
-            a = a.next;
-            b = b.next;
-        }
-        return true;
+        return dummyHead.next;
     }
 }
