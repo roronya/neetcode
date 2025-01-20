@@ -30,7 +30,7 @@ public class ListNode {
         return builder.toString();
     }
 
-    public static ListNode of(int[] array) {
+    public static ListNode of(int... array) {
         if (array.length < 1) return new ListNode();
         ListNode head = new ListNode(array[0]);
         ListNode current = head;
