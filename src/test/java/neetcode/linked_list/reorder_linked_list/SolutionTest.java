@@ -12,6 +12,7 @@ class SolutionTest {
         ListNode head = ListNode.of(2, 4, 6, 8);
         solution.reorderList(head);
         ListNode expected = ListNode.of(2, 8, 4, 6);
+        System.out.println(head);
         Assertions.assertTrue(Utils.deepEquals(head, expected));
     }
 
@@ -21,6 +22,7 @@ class SolutionTest {
         ListNode head = ListNode.of(2, 4, 6, 8, 10);
         solution.reorderList(head);
         ListNode expected = ListNode.of(2, 10, 4, 8, 6);
+        System.out.println(head);
         Assertions.assertTrue(Utils.deepEquals(head, expected));
     }
 }
