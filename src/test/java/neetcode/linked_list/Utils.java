@@ -2,6 +2,9 @@ package neetcode.linked_list;
 
 public class Utils {
     public static boolean deepEquals(ListNode actual, ListNode expected) {
+        if (actual == null) {
+            return expected == null;
+        }
         while (actual != null && expected != null) {
             if (actual.val != expected.val) return false;
             actual = actual.next;
