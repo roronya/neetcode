@@ -20,7 +20,25 @@ class SolutionTest {
         };
         Node head = Node.of(in);
         Node actual = solution.copyRandomList(head);
+        // System.out.println(head);
+        // System.out.println(actual);
         Assertions.assertTrue(Utils.deepEquals(head, actual));
     }
+
+    @Test
+    void example2() {
+        Solution solution = new Solution();
+        List<Integer>[] in = new List[]{
+                Arrays.asList(3, null),
+                Arrays.asList(3, 0),
+                Arrays.asList(3, null),
+        };
+        Node head = Node.of(in);
+        Node actual = solution.copyRandomList(head);
+        System.out.println(head);
+        System.out.println(actual);
+        Assertions.assertTrue(Utils.deepEquals(head, actual));
+    }
+
 
 }
