@@ -24,4 +24,11 @@ class SolutionTest {
         int actual = solution.findDuplicate(new int[]{1, 3, 4, 2, 2});
         Assertions.assertEquals(2, actual);
     }
+
+    @Test
+    void example4() {
+        Solution solution = new Solution();
+        int actual = solution.findDuplicate(new int[]{3, 1, 3, 4, 2});
+        Assertions.assertEquals(3, actual);
+    }
 }

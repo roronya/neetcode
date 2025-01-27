@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 class Solution {
     public int findDuplicate(int[] nums) {
-        return twoPointers(nums);
+        return negativeMarking(nums);
     }
 
     // O(n^2), O(1)
@@ -27,12 +27,11 @@ class Solution {
         return 0;
     }
 
-    int twoPointers(int[] nums) {
-        int l = 0, r = nums.length - 1;
-        while (l < r) {
-            if (nums[l] == nums[r]) return nums[l];
-            if (nums[l] < nums[r]) l++;
-            else r--;
+    // O(n), O(1)
+    int negativeMarking(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[Math.abs(nums[i]) - 1] < 0) return Math.abs(nums[i]);
+            nums[Math.abs(nums[i]) - 1] *= -1;
         }
         return 0;
     }
