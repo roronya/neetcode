@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 class LRUCacheTest {
     @Test
     void example() {
-        MyLRUCache lRUCache = new MyLRUCache(2);
+        BruteForceLRUCache lRUCache = new BruteForceLRUCache(2);
         lRUCache.put(1, 10);  // cache: {1=10}
         Assertions.assertEquals(10, lRUCache.get(1));
         lRUCache.put(2, 20);  // cache: {1=10, 2=20}
@@ -17,7 +17,7 @@ class LRUCacheTest {
 
     @Test
     void example1() {
-        MyLRUCache lRUCache = new MyLRUCache(2);
+        BruteForceLRUCache lRUCache = new BruteForceLRUCache(2);
         lRUCache.put(1, 10);  // cache: {1=10}
         Assertions.assertEquals(10, lRUCache.get(1));
         lRUCache.put(1, 20);  // cache: {1=20}
