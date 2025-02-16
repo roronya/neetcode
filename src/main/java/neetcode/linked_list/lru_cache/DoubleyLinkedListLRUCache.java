@@ -1,6 +1,7 @@
 package neetcode.linked_list.lru_cache;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 class Node {
     int key;
@@ -34,7 +35,21 @@ class DoubleyLinkedListLRUCache {
     }
 
     public int get(int key) {
-        return map.containsKey(key) ? map.get(key).val : -1;
+        if (!map.containsKey(key)) return -1;
+        Node node = map.get(key);
+        Node prev = node.prev;
+        Node next = node.next;
+        if (Objects.nonNull(prev)) {
+            prev.next = next;
+        }
+        if (Objects.nonNull(next)) {
+            next.prev = prev;
+        }
+        Node tmp = tail;
+        tail = node;
+        tmp.next = node;
+        tail.prev = tmp;
+        return node.val;
     }
 
     /**
