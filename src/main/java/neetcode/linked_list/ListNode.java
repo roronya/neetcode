@@ -1,5 +1,7 @@
 package neetcode.linked_list;
 
+import java.util.Objects;
+
 public class ListNode {
     public int val;
     public ListNode next;
@@ -31,6 +33,8 @@ public class ListNode {
     }
 
     public static ListNode of(int... array) {
+        if (array.length == 0) return new ListNode();
+
         ListNode dummyHead = new ListNode();
         ListNode current = dummyHead;
         for (int i = 0; i < array.length; i++) {
@@ -38,5 +42,10 @@ public class ListNode {
             current = current.next;
         }
         return dummyHead.next;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(this.toString(), obj.toString());
     }
 }
