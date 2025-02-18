@@ -1,95 +1,74 @@
 package neetcode.linked_list.lru_cache;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 class Node {
     int key;
     int val;
-    Node next;
     Node prev;
+    Node next;
 
-    Node(int key, int val) {
+    public Node(int key, int val) {
         this.key = key;
         this.val = val;
+        this.prev = null;
+        this.next = null;
     }
 }
 
-class DoubleyLinkedListLRUCache {
-    private int capacity;
-    private HashMap<Integer, Node> map;
-    private Node head;
-    private Node tail;
+public class DoubleyLinkedListLRUCache {
+    private int cap;
+    private HashMap<Integer, Node> cache;
+    private Node left;
+    private Node right;
 
-    /**
-     * headとtailはdummyHeadにしておく。
-     * 0<=key=value<=1000のため-1をセットする。
-     *
-     * @param capacity
-     */
     public DoubleyLinkedListLRUCache(int capacity) {
-        this.capacity = capacity;
-        map = new HashMap<>();
-        head = null;
-        tail = null;
+        this.cap = capacity;
+        this.cache = new HashMap<>();
+        this.left = new Node(0, 0);
+        this.right = new Node(0, 0);
+        this.left.next = this.right;
+        this.right.prev = this.left;
+    }
+
+    private void remove(Node node) {
+        Node prev = node.prev;
+        Node nxt = node.next;
+        prev.next = nxt;
+        nxt.prev = prev;
+    }
+
+    private void insert(Node node) {
+        Node prev = this.right.prev;
+        prev.next = node;
+        node.prev = prev;
+        node.next = this.right;
+        this.right.prev = node;
     }
 
     public int get(int key) {
-        if (!map.containsKey(key)) return -1;
-        Node node = map.get(key);
-        Node prev = node.prev;
-        Node next = node.next;
-        if (Objects.nonNull(prev)) {
-            prev.next = next;
+        if (cache.containsKey(key)) {
+            Node node = cache.get(key);
+            remove(node);
+            insert(node);
+            return node.val;
         }
-        if (Objects.nonNull(next)) {
-            next.prev = prev;
-        }
-        Node tmp = tail;
-        tail = node;
-        tmp.next = node;
-        tail.prev = tmp;
-        return node.val;
+        return -1;
     }
 
-    /**
-     * old → new の順で並ぶLinkedListを考える
-     * capacityを超えているときheadを左へずらす
-     * 新しいものは末尾に追加する。
-     */
     public void put(int key, int value) {
-        // keyがすでに含まれているとき
-        if (map.containsKey(key)) {
-            Node tmp = map.get(key);
-            tmp.val = value;
-            map.put(key, tmp);
-            return;
+        if (cache.containsKey(key)) {
+            remove(cache.get(key));
         }
-
-        // 空のとき
-        if (head == null) {
-            Node newNode = new Node(key, value);
-            head = newNode;
-            tail = newNode;
-            map.put(key, newNode);
-            return;
-        }
-
-        // capacityを満たしているとき
-        if (map.size() == capacity) {
-            Node tmp = head;
-            head = head.next;
-            head.prev = null;
-            tmp.next = null;
-            map.remove(tmp.key);
-        }
-
-        // capacityを超えておらず末尾に追加するだけのとき
         Node newNode = new Node(key, value);
-        Node tmp = tail;
-        tail = newNode;
-        tmp.next = newNode;
-        tail.prev = tmp;
-        map.put(key, newNode);
+        cache.put(key, newNode);
+        insert(newNode);
+
+        if (cache.size() > cap) {
+            Node lru = this.left.next;
+            remove(lru);
+            cache.remove(lru.key);
+        }
+
     }
 }

@@ -22,7 +22,7 @@ class LRUCacheTest {
         Assertions.assertEquals(10, lRUCache.get(1));
         lRUCache.put(1, 20);  // cache: {1=20}
         Assertions.assertEquals(20, lRUCache.get(1));
-        lRUCache.put(1, 30);  // cache: {1=20}
+        lRUCache.put(1, 30);  // cache: {1=30}
         Assertions.assertEquals(30, lRUCache.get(1));
     }
 
@@ -33,7 +33,7 @@ class LRUCacheTest {
         lRUCache.put(2, 2); // cache: {1=1, 2=2}
         Assertions.assertEquals(1, lRUCache.get(1)); // 1がgetされてるから
         lRUCache.put(3, 3); // このタイミングで捨てられるべきはkey=2 {1=1, 3=3}
-        Assertions.assertEquals(-1, lRUCache.get(2));
+        Assertions.assertEquals(-1, lRUCache.get(2)); //
         lRUCache.put(4, 4);
         Assertions.assertEquals(-1, lRUCache.get(1));
         Assertions.assertEquals(3, lRUCache.get(3));
