@@ -6,6 +6,31 @@ import java.util.Objects;
 
 public class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
+        return iterationMergeKLists(lists);
+    }
+
+    public ListNode iterationMergeKLists(ListNode[] lists) {
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        while (true) {
+            int min = -1;
+            for (int i = 0; i < lists.length; i++) {
+                if (Objects.isNull(lists[i])) continue;
+                if (min == -1 || lists[i].val <= lists[min].val) min = i;
+            }
+            if (min == -1) break;
+            cur.next = lists[min];
+            cur = cur.next;
+            lists[min] = lists[min].next;
+        }
+        return head.next;
+    }
+
+    /**
+     * Time Complexity: O(n * k)
+     * Space Complexity: O(1)
+     */
+    public ListNode myMergeKLists(ListNode[] lists) {
         if (lists.length == 0) return null;
         if (lists.length == 1) return lists[0];
 
