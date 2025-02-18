@@ -33,7 +33,7 @@ public class ListNode {
     }
 
     public static ListNode of(int... array) {
-        if (array.length == 0) return new ListNode();
+        if (array.length == 0) return null;
 
         ListNode dummyHead = new ListNode();
         ListNode current = dummyHead;
