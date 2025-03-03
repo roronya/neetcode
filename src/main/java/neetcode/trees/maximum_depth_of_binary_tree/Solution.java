@@ -20,7 +20,7 @@ import neetcode.trees.TreeNode;
 
 class Solution {
     public int maxDepth(TreeNode root) {
-        return new TreeNode(0);
+        return 0;
     }
 }
 

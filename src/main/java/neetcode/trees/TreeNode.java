@@ -3,22 +3,22 @@ package neetcode.trees;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.Objects;
+import java.util.Queue;
 
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
-    TreeNode() {
+    public TreeNode() {
     }
 
-    TreeNode(int val) {
+    public TreeNode(int val) {
         this.val = val;
     }
 
-    TreeNode(int val, TreeNode left, TreeNode right) {
+    public TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
         this.right = right;
@@ -26,22 +26,22 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        ArrayList<Integer> list = new ArrayList<>();
-        Deque<TreeNode> queue = new ArrayDeque<>();
+        if (this.val == 0) return "";
+        ArrayList<Integer> integers = new ArrayList<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(this);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.pop();
-            if (Objects.isNull(node)) continue;
-            list.add(node.val);
-            System.out.println(list);
-            queue.add(node.left);
-            queue.add(node.right);
+            TreeNode top = queue.poll();
+            integers.add(top.val);
+            if (Objects.nonNull(top.left)) queue.add(top.left);
+            if (Objects.nonNull(top.right)) queue.add(top.right);
         }
-        return list.toString();
+        return integers.toString();
     }
 
     @Override
     public boolean equals(Object object) {
+        if (object.getClass() != TreeNode.class) return false;
         return object.toString().equals(this.toString());
     }
 }
