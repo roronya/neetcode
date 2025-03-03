@@ -1,4 +1,4 @@
-package neetcode.trees.invert_binary_tree;
+package neetcode.trees;
 
 
 import java.util.ArrayDeque;

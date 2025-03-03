@@ -1,5 +1,7 @@
 package neetcode.trees.invert_binary_tree;
 
+import neetcode.trees.TreeNode;
+
 import java.util.Objects;
 import java.util.Stack;
 

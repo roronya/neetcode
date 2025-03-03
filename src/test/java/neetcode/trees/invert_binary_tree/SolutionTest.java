@@ -1,5 +1,6 @@
 package neetcode.trees.invert_binary_tree;
 
+import neetcode.trees.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
