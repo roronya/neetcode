@@ -26,7 +26,6 @@ public class TreeNode {
 
     @Override
     public String toString() {
-        if (this.val == 0) return "";
         ArrayList<Integer> integers = new ArrayList<>();
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.add(this);

@@ -12,7 +12,7 @@ class TreeNodeTest {
         void val_equals_zero() {
             TreeNode treeNode = new TreeNode();
             String actual = treeNode.toString();
-            String expected = "";
+            String expected = "[0]";
             Assertions.assertEquals(expected, actual);
         }
 
