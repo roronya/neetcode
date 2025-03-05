@@ -33,6 +33,7 @@ class Solution {
      * [1,2,3,4,5,6] 4→3→2→5→6みたいなV字をどう探索するか
      * rootより１個下のノードでのV字が一番長い経路になる。これを再帰的に適用するでOKぽい。
      * それを幅か深で探索する
+     * ^の形を下から探っていって一番長いやつを探す。
      */
     int deepFirstSearch(TreeNode root) {
         if (root == null) return 0;
