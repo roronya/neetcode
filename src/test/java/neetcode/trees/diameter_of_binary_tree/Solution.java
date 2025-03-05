@@ -2,8 +2,6 @@ package neetcode.trees.diameter_of_binary_tree;
 
 import neetcode.trees.TreeNode;
 
-import java.util.Objects;
-
 class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
         return deepFirstSearch(root);
@@ -37,16 +35,18 @@ class Solution {
      * それを幅か深で探索する
      */
     int deepFirstSearch(TreeNode root) {
-        if (Objects.isNull(root)) return 0;
-        return Math.max(
-                Math.max(deepFirstSearch(root.left), deepFirstSearch(root.right)),
-                dfs(root.left) + dfs(root.right)
-        );
+        if (root == null) return 0;
+        int[] ans = {0};
+        dfs(root, ans);
+        return ans[0];
     }
 
-    int dfs(TreeNode node) {
+    int dfs(TreeNode node, int[] ans) {
         if (node == null) return 0;
-        return 1 + Math.max(dfs(node.left), dfs(node.right));
+        int l = dfs(node.left, ans);
+        int r = dfs(node.right, ans);
+        ans[0] = Math.max(ans[0], l + r);
+        return 1 + Math.max(l, r);
     }
 }
 
