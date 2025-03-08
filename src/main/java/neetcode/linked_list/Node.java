@@ -15,14 +15,14 @@ public class Node {
     }
 
     public static Node of(List<Integer>... nodes) {
-        if (nodes.length < 2) return new Node(nodes[0].getFirst());
+        if (nodes.length < 2) return new Node(nodes[0].get(0));
 
         HashMap<Integer, Node> map = new HashMap<>(); // index:Node
         Node dummy = new Node(0);
         Node prev = dummy;
         int i = 0;
         for (List<Integer> node : nodes) {
-            Node cur = new Node(node.getFirst());
+            Node cur = new Node(node.get(0));
             map.put(i, cur);
             prev.next = cur;
             prev = cur;

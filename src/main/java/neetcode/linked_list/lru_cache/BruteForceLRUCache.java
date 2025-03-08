@@ -36,7 +36,7 @@ class BruteForceLRUCache {
 
         // capacityを超えているとき
         if (cache.size() == capacity) {
-            cache.removeFirst();
+            cache.remove(0);
         }
 
         // 空のとき

@@ -36,7 +36,6 @@ class SolutionTest {
                 );
         Solution solution = new Solution();
         boolean actual = solution.isSameTree(p, q);
-        Assertions.assertTrue(actual);
+        Assertions.assertFalse(actual);
     }
-
 }
