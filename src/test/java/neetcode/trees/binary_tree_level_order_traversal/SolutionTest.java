@@ -37,7 +37,7 @@ class SolutionTest {
     void example3() {
         TreeNode root = new TreeNode();
         List<List<Integer>> actual = new Solution().levelOrder(root);
-        List<List<Integer>> expected = List.of(List.of());
+        List<List<Integer>> expected = List.of(List.of(0));
         Assertions.assertEquals(expected, actual);
     }
 }
