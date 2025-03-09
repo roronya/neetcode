@@ -16,7 +16,7 @@ public class Solution {
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        return mySolution(root);
+        return optimal(root);
     }
 
     /**
@@ -24,8 +24,8 @@ public class Solution {
      * バランス木ではないから、左や右に寄ったツリーはできてしまいそう。
      * レベルは覚えている必要がありそう。
      * 初期値1, 2, 4, 8, ... = 2^nの配列
-     * time complexity: O(logn)
-     * space complexity: O(logn)
+     * time complexity: O(n)
+     * space complexity: O(n)
      */
     public List<List<Integer>> mySolution(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
@@ -47,4 +47,26 @@ public class Solution {
         return res;
     }
 
+    public List<List<Integer>> optimal(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+
+        while (!q.isEmpty()) {
+            System.out.println(res);
+            List<Integer> level = new ArrayList<>();
+
+            for (int i = 0; i < q.size(); i++) {
+                TreeNode node = q.poll();
+                if (node != null) {
+                    level.add(node.val);
+                    q.add(node.left);
+                    q.add(node.right);
+                }
+            }
+            if (level.size() > 0) res.add(level);
+        }
+        return res;
+    }
 }
