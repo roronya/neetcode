@@ -7,15 +7,15 @@ import java.util.Stack;
 
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        return bruteForce(root, subRoot);
+        return dfs(root, subRoot);
     }
 
     /**
      * rootの全部のノードからsubRootに適しているか確認する
-     * time complexity: O(n^2)
+     * time complexity: O(n * m)
      * space complexity: O(n + m)
      */
-    public boolean bruteForce(TreeNode root, TreeNode subRoot) {
+    public boolean dfs(TreeNode root, TreeNode subRoot) {
         Stack<TreeNode> stack = new Stack<>();
         stack.add(root);
         while (!stack.isEmpty()) {
