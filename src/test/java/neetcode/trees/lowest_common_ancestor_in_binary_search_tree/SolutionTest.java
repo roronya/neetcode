@@ -25,7 +25,7 @@ class SolutionTest {
     }
 
     @Test
-    void example1() {
+    void example2() {
         TreeNode root =
                 new TreeNode(5,
                         new TreeNode(3,
@@ -40,7 +40,7 @@ class SolutionTest {
         TreeNode q = new TreeNode(4);
         Solution solution = new Solution();
         TreeNode actual = solution.lowestCommonAncestor(root, p, q);
-        Assertions.assertEquals(3, actual);
+        Assertions.assertEquals(3, actual.val);
     }
 
 }
