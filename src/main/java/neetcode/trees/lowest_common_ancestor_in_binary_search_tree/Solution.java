@@ -8,7 +8,31 @@ import java.util.Stack;
 
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        return mySolution(root, p, q);
+        return optimal(root, p, q);
+    }
+
+    /**
+     * lowerst common ancesterとは
+     * Binary Treeでpとqが左右に分かれる分岐点のNodeのこと
+     * すなわち、pとqがrootよりも大きいときと小さいときを繰り返し、最終的に分岐する場所
+     * その条件は!(p < root && q < root) || !(p > root && q > root)
+     */
+    TreeNode optimal(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode cur = root;
+
+        while (cur != null) {
+            if (cur.val < p.val && cur.val < q.val) {
+                // p, qどちらもcurの右側にある
+                cur = cur.right;
+            } else if (cur.val > p.val && cur.val > q.val) {
+                // p, qのどちらもcurの左側にある
+                cur = cur.left;
+            } else {
+                // p, qが分岐するノード
+                return cur;
+            }
+        }
+        return null;
     }
 
     /**
