@@ -13,13 +13,13 @@ class SolutionTest {
                                 new TreeNode(4),
                                 new TreeNode(5)),
                         new TreeNode(3));
-        TreeNode subTree =
+        TreeNode subRoot =
                 new TreeNode(2,
                         new TreeNode(4),
                         new TreeNode(5));
         Solution solution = new Solution();
 
-        boolean actual = solution.isSubtree(root, subTree);
+        boolean actual = solution.isSubtree(root, subRoot);
         Assertions.assertTrue(actual);
     }
 
@@ -33,13 +33,13 @@ class SolutionTest {
                                         null),
                                 new TreeNode(5)),
                         new TreeNode(3));
-        TreeNode subTree =
+        TreeNode subRoot =
                 new TreeNode(2,
                         new TreeNode(4),
                         new TreeNode(5));
         Solution solution = new Solution();
 
-        boolean actual = solution.isSubtree(root, subTree);
+        boolean actual = solution.isSubtree(root, subRoot);
         Assertions.assertFalse(actual);
     }
 }
