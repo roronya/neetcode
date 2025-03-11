@@ -57,7 +57,8 @@ public class Solution {
             System.out.println(res);
             List<Integer> level = new ArrayList<>();
 
-            for (int i = 0; i < q.size(); i++) {
+            System.out.println(q);
+            for (int i = q.size(); i > 0; i--) {
                 TreeNode node = q.poll();
                 if (node != null) {
                     level.add(node.val);
