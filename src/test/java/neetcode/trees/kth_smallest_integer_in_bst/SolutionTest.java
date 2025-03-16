@@ -25,7 +25,7 @@ class SolutionTest {
                         new TreeNode(3,
                                 new TreeNode(2),
                                 null),
-                        new TreeNode(3));
+                        new TreeNode(5));
         int k = 4;
         Solution solution = new Solution();
         int actual = solution.kthSmallest(root, k);
