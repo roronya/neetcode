@@ -6,7 +6,17 @@ import java.util.LinkedList;
 
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return mySolution(root);
+        return valid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        // return mySolution(root);
+    }
+
+    /**
+     * 各ノードが持って良い値の範疇が決められるので、それを下にDFSする
+     */
+    boolean valid(TreeNode node, Integer left, Integer right) {
+        if (node == null) return true;
+        if (!(left < node.val && node.val < right)) return false;
+        return valid(node.left, left, node.val) && valid(node.right, node.val, right);
     }
 
     /**
