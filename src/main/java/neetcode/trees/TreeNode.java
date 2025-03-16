@@ -1,10 +1,8 @@
 package neetcode.trees;
 
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.LinkedList;
 
 public class TreeNode {
     public int val;
@@ -27,13 +25,17 @@ public class TreeNode {
     @Override
     public String toString() {
         ArrayList<Integer> integers = new ArrayList<>();
-        Queue<TreeNode> queue = new ArrayDeque<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(this);
         while (!queue.isEmpty()) {
             TreeNode top = queue.poll();
+            if (top == null) {
+                integers.add(null);
+                continue;
+            }
             integers.add(top.val);
-            if (Objects.nonNull(top.left)) queue.add(top.left);
-            if (Objects.nonNull(top.right)) queue.add(top.right);
+            queue.add(top.left);
+            queue.add(top.right);
         }
         return integers.toString();
     }
