@@ -9,6 +9,26 @@ class SolutionTest {
     void example1() {
         // Input: preorder = [1,2,3,4], inorder = [2,1,3,4]
         //Output: [1,2,3,null,null,null,4]
+        /**
+         * preorderだけだと
+         * 1
+         * 2 3
+         * 4
+         * か
+         * 1
+         * 2
+         * 3 4
+         * か見比べがつかない
+         * inorderもあると
+         * 1
+         * 2   3
+         * n n 4 n
+         *
+         * 1
+         * 2   3
+         * n n n 4
+         * の見分けはつかない
+         */
         int[] preorder = {1, 2, 3, 4};
         int[] inorder = {2, 1, 3, 4};
         Solution solution = new Solution();
