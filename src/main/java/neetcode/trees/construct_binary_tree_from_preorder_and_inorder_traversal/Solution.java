@@ -20,6 +20,10 @@ class Solution {
      * inorderからrootを見つけたら、左がleft,右がrightになる => [4,2,5],[3,6,7]
      * [4,2,5]の中でpreorderの最もindexが若いのは2なので、2がleftの中のrootになる。 => [4], [5]
      * これを再帰的に繰り返してツリーをrebuildできる。
+     * time complexity: O(n^2)
+     * whileループを全ノードに対して行うため
+     *
+     * O(n)を目指したいが、解説もこの方式なので一旦これで…
      */
     int preIndex = 0;
     TreeNode mySolution(int[] preorder, int[] inorder) {
