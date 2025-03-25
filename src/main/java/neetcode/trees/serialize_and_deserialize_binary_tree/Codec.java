@@ -9,6 +9,8 @@ import java.util.Queue;
 public class Codec {
 
     // Encodes a tree to a single string.
+    // time complexity: O(n) 全ノードをbfsで舐めてる。
+    // space complexity: O(n) bfsのために使うQueueのスペースが必要
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -32,6 +34,8 @@ public class Codec {
     }
 
     // Decodes your encoded data to tree.
+    // time complexity: O(n) + O(n) = O(n) lexerでStringを舐める。木の再構築にbfsでtokenをすべて舐める
+    // space complexity: O(n) tokenを保存するLinkedListと再構築に使うQueueのスペースが必要
     public TreeNode deserialize(String data) {
         LinkedList<String> tokens = new LinkedList<>();
         // lexer
