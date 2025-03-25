@@ -48,7 +48,7 @@ public class Codec {
                 // System.out.println(sb);
             }
             tokens.add(sb.toString());
-            System.out.println(tokens);
+            // System.out.println(tokens);
         }
 
         // [1,2,3,null,null,4,5,null,null,null,null]
@@ -57,11 +57,11 @@ public class Codec {
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
         while (!tokens.isEmpty()) {
-            System.out.println("tokens:" + tokens);
-            System.out.println("queue:" + q);
+            //System.out.println("tokens:" + tokens);
+            // System.out.println("queue:" + q);
             String left = tokens.remove();
             String right = tokens.remove();
-            System.out.println("left:right=" + left + ":" + right);
+            // System.out.println("left:right=" + left + ":" + right);
             TreeNode cur = q.remove();
             cur.left = Objects.equals(left, "null") ? null : new TreeNode(Integer.parseInt(left));
             cur.right = Objects.equals(right, "null") ? null : new TreeNode(Integer.parseInt(right));
