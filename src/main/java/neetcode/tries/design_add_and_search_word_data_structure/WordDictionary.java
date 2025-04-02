@@ -1,5 +1,8 @@
 package neetcode.tries.design_add_and_search_word_data_structure;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class WordDictionary {
     Node root;
 
@@ -20,15 +23,25 @@ class WordDictionary {
 
     public boolean search(String word) {
         Node cur = root;
-        for (char ch : word.toCharArray()) {
-            if (ch == '.') {
-                // childrenすべてが探索対象になる
-
-            } else {
-                int i = ch - 'a';
-                if (cur.children[i] == null) return false;
-                cur = cur.children[i];
+        Queue<Node> q = new LinkedList<>();
+        q.add(cur);
+        for (int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            Queue<Node> newQ = new LinkedList<>();
+            while (!q.isEmpty()) {
+                Node node = q.remove();
+                if (ch == '.') {
+                    for (Node c : node.children) {
+                        if (c != null) newQ.add(c);
+                    }
+                } else {
+                    int j = ch - 'a';
+                    if (node.children[j] == null) return false;
+                    newQ.add(node.children[j]);
+                }
             }
+            if (newQ.isEmpty()) return false;
+            q = newQ;
         }
         return true;
     }

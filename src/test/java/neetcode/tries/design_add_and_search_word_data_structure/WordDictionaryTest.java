@@ -15,4 +15,23 @@ class WordDictionaryTest {
         Assertions.assertTrue(wordDictionary.search(".ay"));
         Assertions.assertTrue(wordDictionary.search("b.."));
     }
+
+    // ["WordDictionary","addWord","dog","search","do.."]
+    @Test
+    void example2() {
+        WordDictionary wordDictionary = new WordDictionary();
+        wordDictionary.addWord("dog");
+        Assertions.assertFalse(wordDictionary.search("do.."));
+    }
+
+    @Test
+    void example3() {
+        WordDictionary wordDictionary = new WordDictionary();
+        wordDictionary.addWord("complex");
+        wordDictionary.addWord("complication");
+        Assertions.assertTrue(wordDictionary.search("c.mpl.x"));
+        Assertions.assertTrue(wordDictionary.search("complic.tion"));
+        Assertions.assertFalse(wordDictionary.search("..........."));
+        Assertions.assertFalse(wordDictionary.search("c....."));
+    }
 }
