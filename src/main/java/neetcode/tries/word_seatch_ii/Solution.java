@@ -4,11 +4,48 @@ import java.util.*;
 
 class Solution {
     public List<String> findWords(char[][] board, String[] words) {
+        List<String> ans = new ArrayList<>();
+        for (String word : words) {
+            if (search(board, word)) ans.add(word);
+        }
+        return ans;
+    }
+
+    private boolean search(char[][] board, String word) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                Set<String> set = new HashSet<>();
+                if (board[i][j] == word.charAt(0) && dfs(board, word, new int[]{i, j}, 0, set)) return true;
+            }
+        }
+        return false;
+    }
+
+    // wiは探索済み文字インデックス
+    private boolean dfs(char[][] board, String word, int[] p, int wi, Set<String> set) {
+        if (wi >= word.length() - 1) return true;
+        int i = p[0], j = p[1];
+        int[][] directions = {{i + 1, j}, {i, j + 1}, {i - 1, j}, {i, j - 1}};
+        set.add(Arrays.toString(p));
+        for (int[] di : directions) {
+            if (di[0] < 0 || di[0] >= board.length || di[1] < 0 || di[1] >= board[di[0]].length || set.contains(Arrays.toString(di)))
+                continue;
+            if (board[di[0]][di[1]] == word.charAt(wi + 1)) {
+                if (dfs(board, word, di, wi + 1, set)) return true;
+            }
+        }
+        set.remove(Arrays.toString(p));
+        return false;
+    }
+}
+
+
+class MySolution {
+    public List<String> findWords(char[][] board, String[] words) {
         return myFindWords(board, words);
     }
 
     // 1文字目をboardから探す
-
     // そこから4方向へ探索していく
     // boolean[][]かSet<Pair<Integer, Integer>>で訪れた場所を記録しておき二度と訪れないようにする
     public List<String> myFindWords(char[][] board, String[] words) {

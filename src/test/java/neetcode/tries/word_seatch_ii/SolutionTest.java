@@ -60,6 +60,6 @@ class SolutionTest {
         Solution solution = new Solution();
         List<String> actual = solution.findWords(borad, words);
         List<String> expected = List.of("abcdefg", "befa", "eaabcdgfa", "gfedcbaaa");
-        Assertions.assertEquals(expected.toArray(), actual.toArray());
+        Assertions.assertEquals(expected, actual);
     }
 }
