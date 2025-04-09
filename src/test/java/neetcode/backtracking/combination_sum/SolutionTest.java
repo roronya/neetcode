@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 class SolutionTest {
+
     /**
      * Input:
      * nums = [2,5,6,9]
@@ -47,8 +48,8 @@ class SolutionTest {
         List<List<Integer>> expected = List.of(
                 List.of(3, 3, 3, 3, 4),
                 List.of(3, 3, 5, 5),
-                List.of(4, 4, 4, 4),
-                List.of(3, 4, 4, 5)
+                List.of(3, 4, 4, 5),
+                List.of(4, 4, 4, 4)
         );
 
         Assertions.assertEquals(expected, actual);
