@@ -1,14 +1,37 @@
 package neetcode.backtracking.combination_sum;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 class Solution {
+    List<List<Integer>> res;
+
     public List<List<Integer>> combinationSum(int[] nums, int target) {
-        return myCombinationSum(nums, target);
+        return optimal(nums, target);
     }
+
+    public List<List<Integer>> optimal(int[] nums, int target) {
+        res = new ArrayList<>();
+        Arrays.sort(nums); // sortしておくことで、探索順序が小さいやつをたくさん使う順になるので妥当
+
+        dfs(0, new ArrayList<>(), 0, nums, target);
+        return res;
+    }
+
+    private void dfs(int i, List<Integer> cur, int total, int[] nums, int target) {
+        if (total == target) {
+            res.add(new ArrayList<>(cur));
+        }
+
+        for (int j = i; j < nums.length; j++) {
+            if (total + nums[j] > target) {
+                return;
+            }
+            cur.add(nums[j]);
+            dfs(j, cur, total + nums[j], nums, target);
+            cur.remove(cur.size() - 1);
+        }
+    }
+
 
     /**
      * targetを超えるまでnumsからどれかを使う
@@ -17,11 +40,11 @@ class Solution {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> combination = new ArrayList<>();
         Set<String> set = new HashSet<>();
-        dfs(nums, target, combination, ans, set);
+        myDfs(nums, target, combination, ans, set);
         return ans;
     }
 
-    void dfs(int[] nums, int target, List<Integer> conbination, List<List<Integer>> ans, Set<String> set) {
+    void myDfs(int[] nums, int target, List<Integer> conbination, List<List<Integer>> ans, Set<String> set) {
         if (target == 0) {
             List<Integer> sorted = conbination.stream().sorted().toList();
             if (set.contains(sorted.toString())) {
@@ -34,7 +57,7 @@ class Solution {
         if (target < 0) return;
         for (int num : nums) {
             conbination.add(num);
-            dfs(nums, target - num, conbination, ans, set);
+            myDfs(nums, target - num, conbination, ans, set);
             conbination.remove(conbination.size() - 1);
         }
     }
