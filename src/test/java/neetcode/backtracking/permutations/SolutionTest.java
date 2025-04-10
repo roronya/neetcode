@@ -40,5 +40,4 @@ class SolutionTest {
         );
         Assertions.assertEquals(expected, actual);
     }
-
 }
