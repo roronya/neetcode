@@ -51,4 +51,13 @@ class SolutionTest {
         boolean actual = solution.exist(board, word);
         Assertions.assertFalse(actual);
     }
+
+    @Test
+    void example3() {
+        char[][] board = {{'a' }};
+        String word = "a";
+        Solution solution = new Solution();
+        boolean actual = solution.exist(board, word);
+        Assertions.assertTrue(actual);
+    }
 }
