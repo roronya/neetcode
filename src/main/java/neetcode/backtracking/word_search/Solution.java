@@ -17,6 +17,7 @@ class Solution {
                 }
             }
         }
+        return false;
     }
 
     private boolean dfs(char[][] board, String word, int r, int c, int i) {
