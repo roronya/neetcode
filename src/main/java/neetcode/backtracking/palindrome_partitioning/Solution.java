@@ -13,6 +13,9 @@ class Solution {
     }
 
     private void dfs(int start, String s) {
+        System.out.println("----------------");
+        System.out.println(res);
+        System.out.println(part);
         if (start == s.length()) {
             res.add(new ArrayList<>(part));
             return;
