@@ -5,7 +5,8 @@ import java.util.List;
 
 class Solution {
     private List<List<String>> res = new ArrayList<>();
-    private char[][] board;
+    private List<int[]> Qs = new ArrayList<>();
+
     /**
      * Qを置く場所を配列で持つ
      * 新しくQを置くたびに他のQの効きがないか確認し、問題なければ置く。問題あれば置かない。
@@ -15,9 +16,6 @@ class Solution {
      * boardを.#Qで更新していくやり方もあるが、元に戻す作業が大変。
      * Qを置く座標を持っておき、それらから計算で置ける/置けないの判断が出来た方が良い
      */
-
-    private List<int[]> Qs = new ArrayList<>();
-
     public List<List<String>> solveNQueens(int n) {
         return mySolveNQueens(n);
     }
