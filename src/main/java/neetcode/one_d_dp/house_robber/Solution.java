@@ -14,15 +14,13 @@ class Solution {
      * 2: [2,4] (奇数要素のみ
      * 3: [1,4] (偶数→奇数
      * 4: [2,5] (奇数→偶数
+     * returnするのは最後尾か最後尾の左隣でMax取れば良さそう
      */
     public int myRob(int[] nums) {
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
-        dp[1] = nums[1];
-        dp[2] = dp[0] + nums[2];
+        nums[2] = nums[0] + nums[2];
         for(int i = 3; i< nums.length; i++) {
-            dp[i] = Math.max(dp[i-2], dp[i-3]) + nums[i];
+            nums[i] = Math.max(nums[i-2], nums[i-3]) + nums[i];
         }
-        return Math.max(dp[nums.length - 1], dp[nums.length - 2]);
+        return Math.max(nums[nums.length - 1], nums[nums.length - 2]);
     }
 }
