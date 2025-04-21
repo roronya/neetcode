@@ -14,7 +14,7 @@ class SolutionTest {
         String s = "ababd";
         Solution solution = new Solution();
         String actual = solution.longestPalindrome(s);
-        String expected = "bad";
+        String expected = "bab";
         Assertions.assertEquals(expected, actual);
     }
 
