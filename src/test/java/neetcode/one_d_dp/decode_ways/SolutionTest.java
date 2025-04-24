@@ -4,11 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class SolutionTest {
+    @Test
+    void check() {
+        System.out.println('Z' - 'A');
+    }
+
     /**
      * Input: s = "12"
-     *
+     * <p>
      * Output: 2
-     *
+     * <p>
      * Explanation: "12" could be decoded as "AB" (1 2) or "L" (12).
      */
     @Test
@@ -21,7 +26,7 @@ class SolutionTest {
 
     /**
      * Input: s = "01"
-     *
+     * <p>
      * Output: 0
      */
     @Test
