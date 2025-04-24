@@ -17,7 +17,6 @@ class SolutionTest {
         Assertions.assertEquals(3, actual);
     }
 
-
     /**
      * Input: s = "aaa"
      * <p>
@@ -30,4 +29,17 @@ class SolutionTest {
         int actual = solution.countSubstrings(s);
         Assertions.assertEquals(6, actual);
     }
+
+    /**
+     * s="abbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabba"
+     * expected: 336
+     */
+    @Test
+    void example3() {
+        String s = "abbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabbaabba";
+        Solution solution = new Solution();
+        int actual = solution.countSubstrings(s);
+        Assertions.assertEquals(336, actual);
+    }
+
 }
