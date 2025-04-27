@@ -45,4 +45,17 @@ class SolutionTest {
         int actual = solution.coinChange(coins, amount);
         Assertions.assertEquals(0, actual);
     }
+
+    /**
+     * coins=[1,2,5]
+     * amount=100
+     */
+    @Test
+    void example4() {
+        int[] coins = {1, 2, 5};
+        int amount = 100;
+        Solution solution = new Solution();
+        int actual = solution.coinChange(coins, amount);
+        Assertions.assertEquals(20, actual);
+    }
 }
