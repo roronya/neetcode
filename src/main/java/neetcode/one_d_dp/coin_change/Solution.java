@@ -1,4 +1,4 @@
-package neetcode.coin_change;
+package neetcode.one_d_dp.coin_change;
 
 import java.util.Arrays;
 

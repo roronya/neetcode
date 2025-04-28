@@ -1,5 +1,6 @@
 package neetcode.coin_change;
 
+import neetcode.one_d_dp.coin_change.Solution;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
