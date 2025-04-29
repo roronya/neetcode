@@ -6,6 +6,16 @@ class Solution {
     }
 
     public int bruteforce(int[] nums) {
-        return 0;
+        if (nums.length == 0) return 0;
+        int res = nums[0];
+        for(int i = 0; i < nums.length; i++) {
+            int product = nums[i];
+            res = Math.max(res, product);
+            for(int j = i + 1; j < nums.length; j++) {
+                product *= nums[j];
+                res = Math.max(res, product);
+            }
+        }
+        return res;
     }
 }
