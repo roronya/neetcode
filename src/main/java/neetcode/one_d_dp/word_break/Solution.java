@@ -12,6 +12,11 @@ class Solution {
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
+        return bruteforce(s, wordDict);
+
+    }
+
+    private boolean bruteforce(String s, List<String> wordDict) {
         //System.out.println("-------------");
         //System.out.println(s);
         /**
