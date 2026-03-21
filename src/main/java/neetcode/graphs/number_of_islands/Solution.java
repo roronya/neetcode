@@ -8,6 +8,8 @@ public class Solution {
      * gridを舐めていく
      * 1だったらcountを++
      * 探索で上下左右を確認し、1だったら-1に変えていく、両方とも0だったら探索を辞めて分岐に戻る
+     * time complexity: O(n * m)
+     * space complexity: O(n * m)
      */
     public int numIslands(char[][] grid) {
         int count = 0;
