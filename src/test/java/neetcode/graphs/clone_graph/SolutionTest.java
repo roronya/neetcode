@@ -12,6 +12,7 @@ import java.util.Queue;
 class SolutionTest {
     boolean isCloned(Node n, Node m) {
         if (n == null && m == null) return true;
+        if (n == null && m != null || n != null && m == null) return false;
 
         Queue<Node> q1 = new LinkedList<>();
         Queue<Node> q2 = new LinkedList<>();

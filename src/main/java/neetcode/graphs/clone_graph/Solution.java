@@ -4,12 +4,35 @@ import java.util.*;
 
 class Solution {
     /**
+     * nodeを舐めつつ、エッジも作っていく
+     */
+    public Node cloneGraph(Node node) {
+        if (node == null) return null;
+        Map<Node, Node> oldToNew = new HashMap<>();
+        Queue<Node> q = new LinkedList<>();
+        oldToNew.put(node, new Node(node.val));
+        q.add(node);
+
+        while (!q.isEmpty()) {
+            Node cur = q.poll();
+            for (Node nei : cur.neighbors) {
+                if (!oldToNew.containsKey(nei)) {
+                    oldToNew.put(nei, new Node(nei.val));
+                    q.add(nei);
+                }
+                oldToNew.get(cur).neighbors.add(oldToNew.get(nei));
+            }
+        }
+        return oldToNew.get(node);
+    }
+
+    /**
      * 探索ですべてのNodeを洗い出し、インスタンスを作成し、{val: Node}の辞書を作っておく
      * もう一度探索し、各Nodeのneighborsに対応するNodeを新しいNodeにsetしていく
      * time complexity: O(V + E)
      * space complexity: O(V)
      */
-    public Node cloneGraph(Node node) {
+    public Node myFirstCloneGraph(Node node) {
         if (node == null) return null;
 
         Queue<Node> q = new LinkedList<>();
