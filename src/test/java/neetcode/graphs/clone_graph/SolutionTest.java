@@ -11,6 +11,8 @@ import java.util.Queue;
 
 class SolutionTest {
     boolean isCloned(Node n, Node m) {
+        if (n == null && m == null) return true;
+
         Queue<Node> q1 = new LinkedList<>();
         Queue<Node> q2 = new LinkedList<>();
         q1.add(n);
@@ -60,11 +62,25 @@ class SolutionTest {
 
         Solution solution = new Solution();
         Node actual = solution.cloneGraph(n1);
+        System.out.println(n1);
+        System.out.println(actual);
         Assertions.assertTrue(isCloned(n1, actual));
     }
 
     @Test
     void example2() {
+        Node n1 = new Node();
+        Solution solution = new Solution();
+        Node actual = solution.cloneGraph(n1);
+        Assertions.assertTrue(isCloned(n1, actual));
+    }
+
+    @Test
+    void example3() {
+        Node n1 = null;
+        Solution solution = new Solution();
+        Node actual = solution.cloneGraph(n1);
+        Assertions.assertTrue(isCloned(n1, actual));
     }
 
     @Nested
